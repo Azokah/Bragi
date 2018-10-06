@@ -1,0 +1,1 @@
+MEASURES_PATH = 'static/data/'
