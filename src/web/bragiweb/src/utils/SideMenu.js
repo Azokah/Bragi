@@ -31,6 +31,16 @@ class SideMenu extends Component {
                 <NavText>
                   Slack
                 </NavText>
+                  <NavItem eventKey={"slack-message"}>
+                  <NavText>
+                    Send Message
+                  </NavText>
+                  </NavItem>
+                  <NavItem eventKey={"slack-chat"}>
+                  <NavText>
+                    See chat
+                  </NavText>
+                </NavItem>
               </NavItem>
               <NavItem eventKey={"telegram"}>
                 <NavIcon>

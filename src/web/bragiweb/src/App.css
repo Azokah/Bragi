@@ -3,6 +3,7 @@
   background-color: #414f6b;
   font-size: calc(10px + 2vmin);
   color: white;
+  max-height: 100%;
 }
 
 .App-logo {
@@ -12,6 +13,21 @@
 
 .IntroLogo{
   width: 25%;
+}
+
+.ScrollBox {
+  padding-left: 25%;
+  padding-top: 5%; 
+  height: 75%;
+  position: absolute;
+  display: block;
+  text-align: center;
+  max-width: 100%;
+  margin: auto;
+  width: 50%;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  max-height: 100%;
 }
 
 .App-header {

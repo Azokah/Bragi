@@ -25,8 +25,10 @@ class App extends Component {
       return <Twitter />
     }else if(page == "telegram"){
       return <Telegram />
-    }else if(page == "slack"){
+    }else if(page == "slack-message"){
       return <SlackSendMessage />
+    }else if(page == "slack-chat"){
+      return <Slack />
     }else{
       return <IndexHome />
     }

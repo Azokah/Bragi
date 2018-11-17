@@ -12,6 +12,7 @@
     -o-transition: min-width 0.15s;
     -ms-transition: min-width 0.15s;
     transition: min-width 0.15s;
+
   }
   .sidenav---sidenav---_2tBP.sidenav---collapsed---LQDEv .sidenav---sidenav-nav---3tvij .sidenav---sidenav-navitem---uwIJ- .sidenav---sidenav-subnav---1EN61 {
     display: none;
@@ -38,6 +39,7 @@
     overflow: hidden;
     -webkit-box-shadow: none;
     box-shadow: none;
+    height: 100%;
   }
   .sidenav---sidenav---_2tBP.sidenav---expanded---1KdUL .sidenav---sidenav-nav---3tvij > .sidenav---sidenav-navitem---uwIJ-.sidenav---expanded---1KdUL .sidenav---sidenav-subnav---1EN61 {
     display: block;
