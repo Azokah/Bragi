@@ -7,6 +7,11 @@
   height: 40vmin;
 }
 
+.IntroLogo{
+  width: 25%;
+  hieght: 25%;
+}
+
 .App-header {
   background-color: #282c34;
   min-height: 100vh;

@@ -1,30 +1,40 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
+import SideMenu from "./utils/SideMenu.js"
+import IndexHome from "./utils/IndexHome.js"
+import Slack from "./utils/Slack.js"
+import Twitter from "./utils/Twitter.js"
+import Telegram from "./utils/Telegram.js"
 import './App.css';
-import {fetchApi} from "./utils/restMethods.js"
-
-
-var config = require('./config/bragi.config.json');
-
-const logo = require("./static/images/bragiportrait.jpg");//No me deja usar una constante de config.bragiPortrait
 
 //import SideMenu from './utils/SideMenu.js'
 
 class App extends Component {
   constructor(props){
     super(props)
-    this.state = {helloString: "Hello world!"};
-    fetchApi("/").then((result) => {
-      this.setState({helloString:result});
-     });
+	  this.state = {currentView: "index"};
+
+     this.updateView = this.updateView.bind();
+  }
+
+  updateView = (view) => {this.setState({currentView: view })};
+
+  switchRender(props){
+    const page = props.page;
+    if(page == "twitter"){
+      return <Twitter />
+    }else if(page == "telegram"){
+      return <Telegram />
+    }else if(page == "slack"){
+      return <Slack />
+    }else{
+      return <IndexHome />
+    }
   }
   render() {
-    
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} alt=""></img>
-          <p> { this.state.helloString } </p>
-        </header>
+        <SideMenu update={this.updateView}/>
+        <this.switchRender page={this.state.currentView}/>
       </div>
     );
   }
