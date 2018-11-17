@@ -58,8 +58,10 @@ def slackPostMessage():
         data = request.get_json(force=True)
         if (client.send_msg(data["mensaje"], data["channel"])):
             return jsonify(returnMensaje("Mensaje enviado correctamente al channel " + data["channel"]))
-    else:
+    elif request.method == 'GET':
         return jsonify('{"mensaje": "ESTE ENDPOINT ESPERA POST"}')
+    else:
+        return jsonify('{"mensaje": "MENSAJE NO RECONOCIDO"}')
 
 
 def returnMensaje(msg):

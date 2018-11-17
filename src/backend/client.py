@@ -1,6 +1,6 @@
 import requests, json
 
-TOKEN = 'xoxp-455437870692-456665734263-455006159665-bcdba145f81d86e713c832301a4f99be'
+TOKEN = 'xoxp-481750559073-483405870279-481624017200-7558321bf81b138192a14bc38e5c34cb'
 
 def create_conversations(name):
     url = "https://slack.com/api/conversations.create"
@@ -40,7 +40,8 @@ def list_channel():
 
 def send_msg(msg, channel_id):
     url = "https://slack.com/api/chat.postMessage"
-
+    print(msg)
+    print(channel_id)
     payload = "'text': '{}', 'channel': '{}'".format(msg, channel_id)
     payload = '{' + payload  + '}'
  
@@ -86,7 +87,7 @@ def user_list():
 
     response = requests.request("GET", url, headers=headers)
     resp = json.loads(response.text)
-
+    print(resp)
     users = []
     for c in resp['members']:
         users.append({'id': c['id'], 'team_id': c['team_id'], 'name': c['name'], 'real_name': c['real_name']})
@@ -125,9 +126,9 @@ def conversation_open(users):
 #print(send_msg(msg, 'CDDJ5MQRG'))
 
 
-users = []
-for u in user_list():
-    users.append(u['id'])
+#users = []
+#for u in user_list():
+#    users.append(u['id'])
 
 
 # print(direct_msg(','.join(users)))
