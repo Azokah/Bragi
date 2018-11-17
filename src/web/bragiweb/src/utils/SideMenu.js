@@ -13,8 +13,6 @@ class SideMenu extends Component {
             <SideNav onSelect={(selected) => {
                 // Add your code here
                 this.handleClick(selected);
-                console.log(selected);
-
               }}>
               <SideNav.Toggle />
               <SideNav.Nav defaultSelected={"index"}>

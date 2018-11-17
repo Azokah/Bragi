@@ -30,3 +30,10 @@ export function fetchApi(endPoint, payload = {}, method = 'GET', headers = {}) {
     });
 };
 
+/*
+export function fetchPOST(){
+    fetch('/api/form-submit-url', {
+        method: 'POST',
+        body: data,
+    });
+}   */

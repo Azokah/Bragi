@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import SideMenu from "./utils/SideMenu.js"
 import IndexHome from "./utils/IndexHome.js"
 import Slack from "./utils/Slack.js"
+import SlackSendMessage from "./utils/SlackSendMessage.js"
 import Twitter from "./utils/Twitter.js"
 import Telegram from "./utils/Telegram.js"
 import './App.css';
@@ -25,7 +26,7 @@ class App extends Component {
     }else if(page == "telegram"){
       return <Telegram />
     }else if(page == "slack"){
-      return <Slack />
+      return <SlackSendMessage />
     }else{
       return <IndexHome />
     }
