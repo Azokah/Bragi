@@ -1,6 +1,6 @@
-import requests, json
+import requests, json, slackconf
 
-TOKEN = 'xoxp-481750559073-483405870279-481624017200-7558321bf81b138192a14bc38e5c34cb'
+TOKEN = slackconf.TOKEN
 
 def create_conversations(name):
     url = "https://slack.com/api/conversations.create"
@@ -40,8 +40,6 @@ def list_channel():
 
 def send_msg(msg, channel_id):
     url = "https://slack.com/api/chat.postMessage"
-    print(msg)
-    print(channel_id)
     payload = "'text': '{}', 'channel': '{}'".format(msg, channel_id)
     payload = '{' + payload  + '}'
  
@@ -73,7 +71,6 @@ def create_channel(name):
     resp = json.loads(response.text)
     if resp['ok']:
         return resp['channel']['id']
-    print(response.text)
     return ''
 
 
@@ -87,7 +84,6 @@ def user_list():
 
     response = requests.request("GET", url, headers=headers)
     resp = json.loads(response.text)
-    print(resp)
     users = []
     for c in resp['members']:
         users.append({'id': c['id'], 'team_id': c['team_id'], 'name': c['name'], 'real_name': c['real_name']})
@@ -112,27 +108,26 @@ def conversation_open(users):
     if resp['ok']:
         return resp['channel']['id']
     
-    print(response.text)
     return ''
 
+def conversation_history(channel):
+    url = 'https://slack.com/api/conversations.history?token=' + TOKEN + '&channel=' + channel
 
- 
-# print(create_channel("tercera"))
-# print(list_channel())
+    response = requests.request("POST", url)
+    resp = json.loads(response.text)
 
-# print(create_channel("Un_canal"))
+    if resp['ok']:
+        data = []
+        users = user_list()
+        for message in resp['messages']:
+            for user in users:
+                if 'user' in message:
+                    if message['user'] == user['id']:
+                        data.append({'username': user['name'], 'text': message["text"], 'ts': message['ts']})
+                else:
+                    data.append({'username': message['username'], 'text': message["text"], 'ts': message['ts']})
+                break
+        return sorted(data, key = lambda i: i['ts'])
+        
+    return '{"message": "error"}'
 
-#msg = input("mensaje:")
-#print(send_msg(msg, 'CDDJ5MQRG'))
-
-
-#users = []
-#for u in user_list():
-#    users.append(u['id'])
-
-
-# print(direct_msg(','.join(users)))
-# print(conversation_open('UDCRPEG2C,UDD02VA5P,UDD032KC1,UDD03SZMX,UDEKKML7R,UDEKLSBKR'))
-
-# print(send_msg("Hola Gente", "GDDJGBPEW"))
-# print(user_list())

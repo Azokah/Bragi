@@ -3,7 +3,7 @@ from flask.json import jsonify
 from flask_cors import CORS, cross_origin
 import json, client
 
-# from client import send_msg
+from client import send_msg
 
 app = Flask(__name__)
 cors = CORS(app)
@@ -42,6 +42,7 @@ def index():
     data['getUsers'] = '[{"msg":"GET, devuelve los usuarios"}]'
     data['getChannels'] = '[{"msg":"GET, devuelve los channels"}]'
     data['sendMsg'] = '[{"msg":"POST, envia mensaje", "param-1": "mensaje", "param-2": "channel"}]'
+    data['getMessagesFromChannel'] = '[{"msg":"POST, devuelve los mensajes de un channel", "param-1": "channel"}]'
     return json.dumps(data)
 
 @app.route('/slack/getUsers', methods=['GET'])
@@ -62,6 +63,11 @@ def slackPostMessage():
         return jsonify('{"mensaje": "ESTE ENDPOINT ESPERA POST"}')
     else:
         return jsonify('{"mensaje": "MENSAJE NO RECONOCIDO"}')
+
+@app.route('/slack/getMessagesFromChannel', methods=['POST'])
+def slackGetMessagesFromChannel():
+    data = request.get_json(force=True)
+    return jsonify(client.conversation_history(data['channel']))
 
 
 def returnMensaje(msg):
