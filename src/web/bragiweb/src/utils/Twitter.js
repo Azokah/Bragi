@@ -3,7 +3,7 @@ import {fetchApi} from "./restMethods.js"
 import '../App.css';
 
 //var config = require('../config/bragi.config.json');
-const logo = require("../static/images/bragiportrait.jpg");//No me deja usar una constante de config.bragiPortrait
+const logo = require("../static/images/tenor.gif");//No me deja usar una constante de config.bragiPortrait
 
 //import SideMenu from './utils/SideMenu.js'
 
@@ -19,6 +19,8 @@ class Twitter extends Component {
         <header className="App-header">
           <p> { this.state.helloString } </p>
         </header>
+        <img src={logo} className="IntroLogo" alt="" />
+        <p> Under construction, come back soon!</p>
       </div>
     );
   }
