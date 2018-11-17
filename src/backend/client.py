@@ -1,6 +1,6 @@
-import requests, json
+import requests, json, slackconf
 
-TOKEN = 'xoxp-481750559073-483405870279-482200241012-04f62848d200fd3a578414738ed36b8e'
+TOKEN = slackconf.TOKEN
 
 def create_conversations(name):
     url = "https://slack.com/api/conversations.create"
@@ -117,6 +117,17 @@ def conversation_history(channel):
     resp = json.loads(response.text)
 
     if resp['ok']:
-        return sorted(resp['messages'], key = lambda i: i['ts']) # resp['messages']
+        data = []
+        users = user_list()
+        for message in resp['messages']:
+            for user in users:
+                if 'user' in message:
+                    if message['user'] == user['id']:
+                        data.append({'username': user['name'], 'text': message["text"], 'ts': message['ts']})
+                else:
+                    data.append({'username': message['username'], 'text': message["text"], 'ts': message['ts']})
+                break
+        return sorted(data, key = lambda i: i['ts'])
         
     return '{"message": "error"}'
+
