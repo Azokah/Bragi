@@ -118,7 +118,6 @@ def post_tweet(tweet):
 @app.route('/twitter/get_timeline', methods=['GET'])
 def getTimeline():
     timeline = get_timeline()
-    print(timeline)
     return timeline
     
 @app.route('/twitter/post_tweet', methods=['POST'])
